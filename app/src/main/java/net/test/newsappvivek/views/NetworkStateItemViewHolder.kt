@@ -28,7 +28,7 @@ import kotlinx.android.synthetic.main.network_state_item.view.*
 import net.test.newsappvivek.R
 
 /**
- * A View Holder that can display a loading or have click action.
+ *
  * It is used to show the network state of paging.
  */
 class NetworkStateItemViewHolder(

@@ -15,6 +15,7 @@ import net.test.newsappvivek.NewsViewModel
 import net.test.newsappvivek.R
 import net.test.newsappvivek.adapter.NetworkStateAdapter
 import net.test.newsappvivek.adapter.NewsListAdapter
+import java.lang.Exception
 
 
 @Suppress("UNCHECKED_CAST")
@@ -41,6 +42,7 @@ class NewsHeadlineFragment :Fragment(){
     }
 
     private fun initNewsAdapter() {
+        // refresh will start from page 1
         swipe_data.setOnRefreshListener { adapter.refresh() }
 
         context?.let {
@@ -60,15 +62,22 @@ class NewsHeadlineFragment :Fragment(){
         lifecycleScope.launch {
             @OptIn(ExperimentalCoroutinesApi::class)
             adapter.loadStateFlow.collectLatest { loadStates ->
+                // load state flow in maintained by PagingDataAdapter automatically
                 swipe_data.isRefreshing = loadStates.refresh is LoadState.Loading
             }
         }
         // flow observer
         lifecycleScope.launch {
-            @OptIn(ExperimentalCoroutinesApi::class)
-            viewModel.news.collectLatest {
-                adapter.submitData(it)
+            try {
+                @OptIn(ExperimentalCoroutinesApi::class)
+                viewModel.news.collectLatest {
+                    adapter.submitData(it)
+                }
+            }catch (e:Exception){
+                e.printStackTrace()
+
             }
+
         }
     }
 

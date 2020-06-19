@@ -5,7 +5,7 @@ import android.content.Context
 import android.net.ConnectivityManager
 
 
-object utils{
+object Utils{
     @SuppressLint("WrongConstant")
     fun isNetworkAvailable(context: Context?): Boolean {
         return if (context == null) {

@@ -32,22 +32,36 @@ class NewsHomeActivity : AppCompatActivity() {
             broadCastDetailScreen(NewsDetailFragment.newInstance(it))
         })
     }
-
+    /**
+     * open news list fragment
+     */
     private fun broadCastnewsListScreen() {
-        supportFragmentManager.beginTransaction().add(R.id.frame_layout, NewsHeadlineFragment())
+        supportFragmentManager.beginTransaction().replace(R.id.frame_layout, NewsHeadlineFragment())
             .addToBackStack(NewsHeadlineFragment::class.java.canonicalName)
             .commitAllowingStateLoss()
     }
 
+    /**
+     * open detail screen of news item
+     */
     private fun broadCastDetailScreen(fragment: NewsDetailFragment) {
-        supportFragmentManager.beginTransaction().add(R.id.frame_layout, fragment)
+        val frag =
+            supportFragmentManager.fragments.get(supportFragmentManager.backStackEntryCount - 1)
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.hide(frag)
+        transaction.add(R.id.frame_layout, fragment)
             .addToBackStack(NewsDetailFragment::class.java.canonicalName).commitAllowingStateLoss()
     }
 
     override fun onBackPressed() {
+        // fragment back handling , it can be more generic
         supportFragmentManager.apply {
             if (backStackEntryCount > 1) {
                 popBackStack()
+                val frag =
+                    fragments.get(supportFragmentManager.backStackEntryCount - 1)
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.show(frag)
             } else {
                 finish()
             }

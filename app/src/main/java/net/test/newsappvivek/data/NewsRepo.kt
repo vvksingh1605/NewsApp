@@ -17,7 +17,7 @@ class NewsRepo private constructor(val db: AppDatabase, val newsApi: NewsAPIServ
         config = PagingConfig(pageSize),
         remoteMediator = RemoteMediatorController(application,db, newsApi)
     ) {
-        db.articlesDao().getAllPaged()
+        db.articlesDao().getAllPaged() // get all paged news stored in db
     }.flow
 
     companion object {

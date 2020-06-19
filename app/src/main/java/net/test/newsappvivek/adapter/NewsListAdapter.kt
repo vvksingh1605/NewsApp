@@ -47,7 +47,6 @@ class NewsListAdapter(private val context: Context,private val viewDetail: (Arti
                 .fit().centerCrop(Gravity.TOP)
                 .into(mImgHeadLine)
 
-            //mTvSource.text=article?.source?.name
 
         }
         var mTvHeadline: TextView = itemView.findViewById(R.id.news_headline)

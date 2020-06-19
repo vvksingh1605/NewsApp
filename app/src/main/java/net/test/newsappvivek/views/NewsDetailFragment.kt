@@ -39,6 +39,9 @@ class NewsDetailFragment:Fragment() {
 
     private fun setDetails(article: Article) {
         tv_desc.text=article.description
+        tv_source.text=article.author
+        tv_time.text=article.publishedAt
+        tv_heading.text=article.title
         Picasso.get()
             .load(article.urlToImage)
             .fit().centerCrop(Gravity.TOP)

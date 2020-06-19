@@ -10,11 +10,12 @@ import androidx.room.withTransaction
 import net.test.newsappvivek.AppConstant
 import net.test.newsappvivek.db.AppDatabase
 import net.test.newsappvivek.network.NewsAPIService
-import net.test.newsappvivek.utils
+import net.test.newsappvivek.Utils
 import retrofit2.HttpException
 import java.io.IOException
 
-
+//class to maintaing data loading by db and api concurrently
+// if data is low while using scroll to see more news on load method will get new data and update
 @OptIn(ExperimentalPagingApi::class)
 class RemoteMediatorController(
     private val application: Application,
@@ -44,12 +45,13 @@ class RemoteMediatorController(
                 }
             }
 
-            if (utils.isNetworkAvailable(application)) {
+            if (Utils.isNetworkAvailable(application)) {
                 val latestNews = newsApi.getLatestNews(
                     pageSize = when (loadType) {
                         REFRESH -> state.config.initialLoadSize
                         else -> state.config.pageSize
                     },
+                    //page(1,2,3,4) key is load key
                     nextPage = loadKey,
                     country = "us",
                     apiKey = AppConstant.API_KEY
@@ -62,6 +64,7 @@ class RemoteMediatorController(
 
                     }
                     pagerDao.delete()
+                    //load key increment is used to send page number 1,2,3 and so on in news api
                     pagerDao.insert(PageKeys(loadKey + 1))
                     articleDao.insertAll(items)
 

@@ -21,7 +21,7 @@ class NewsViewModel( application: Application) :AndroidViewModel(application){
     val mdB by lazy {
         AppDatabase.getInstance(application)
     }
-
+// we can live data also in place of flow
     @OptIn(ExperimentalCoroutinesApi::class, FlowPreview::class)
     val news = flowOf(
         NewsRepo.getInstance(mdB, mNewsApiService).getNews(application,10)

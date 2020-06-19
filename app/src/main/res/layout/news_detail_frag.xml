@@ -18,18 +18,66 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/tv_desc"
+        android:id="@+id/tv_heading"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:padding="10dp"
         tools:text="TextView"
         android:lineSpacingExtra="2dp"
         android:textSize="18sp"
         android:textColor="#fff"
         android:fontFamily="sans-serif"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgDesc" />
+
+
+    <TextView
+        android:id="@+id/tv_desc"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="5dp"
+        android:padding="10dp"
+        tools:text="TextView"
+        android:lineSpacingExtra="2dp"
+        android:textSize="16sp"
+        android:textColor="#fff"
+        android:fontFamily="sans-serif"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_heading" />
+
+    <TextView
+        android:id="@+id/tv_source"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:padding="10dp"
+        tools:text="TextView"
+        android:lineSpacingExtra="2dp"
+        android:textSize="16sp"
+        android:textColor="#fff"
+        android:fontFamily="sans-serif"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+     />
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:padding="10dp"
+        tools:text="TextView"
+        android:layout_marginLeft="10dp"
+        android:lineSpacingExtra="2dp"
+        android:textSize="16sp"
+        android:textColor="#fff"
+        android:fontFamily="sans-serif"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_source"
+     />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

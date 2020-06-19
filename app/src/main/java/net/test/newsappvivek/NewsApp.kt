@@ -16,7 +16,7 @@ class NewsApp: Application() {
             .setRequiredNetworkType(NetworkType.CONNECTED)
             .build()
         val data = Data.Builder()
-        data.putString("delete", "deleteTable")
+        //data.putString("delete", "deleteTable")// can be customised
         refreshWork.setInputData(data.build())
         refreshWork.setConstraints(constraints)
         WorkManager.getInstance(applicationContext).enqueue(refreshWork.build())

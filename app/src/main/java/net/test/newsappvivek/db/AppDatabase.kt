@@ -14,8 +14,7 @@ import net.test.newsappvivek.data.PagerDao
 @Database(entities = [Article::class, PageKeys::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     companion object {
- 
-        // For Singleton instantiation
+
         @Volatile private var instance: AppDatabase? = null
  
         fun getInstance(context: Context): AppDatabase {
@@ -36,7 +35,7 @@ abstract class AppDatabase : RoomDatabase() {
                     .build()
         }
     }
-    abstract fun articlesDao(): ArticlesDao
-    abstract fun pagerDao(): PagerDao
+    abstract fun articlesDao(): ArticlesDao  // news list
+    abstract fun pagerDao(): PagerDao  // page key to maintain paging
 
 }
