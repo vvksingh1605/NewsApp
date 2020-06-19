@@ -1,4 +1,4 @@
-package net.test.newsapp
+package net.test.newsappvivek
 
 import org.junit.Test
 

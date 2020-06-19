@@ -1,4 +1,4 @@
-package net.test.newsapp
+package net.test.newsappvivek
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
