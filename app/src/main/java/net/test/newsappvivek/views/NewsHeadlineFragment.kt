@@ -4,13 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.paging.LoadState
 import kotlinx.android.synthetic.main.news_headline_frag.*
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import net.test.newsappvivek.AppConstant.BUNDLE_ARTICLE
 import net.test.newsappvivek.NewsViewModel
 import net.test.newsappvivek.R
 import net.test.newsappvivek.adapter.NetworkStateAdapter
@@ -47,9 +52,10 @@ class NewsHeadlineFragment :Fragment(){
 
         context?.let {
             adapter = NewsListAdapter(it){
-               val frag = NewsDetailFragment.newInstance(it)
 
-                viewModel.detailEvent.value=it
+               val action= NewsHeadlineFragmentDirections.actionNewsHeadlineFragmentToNewsDetailFragment(it)
+                val bundle= bundleOf(BUNDLE_ARTICLE to it)
+                Navigation.findNavController(requireView()).navigate(action)
             }
             // loader view handling
             recyclerView.adapter = adapter.withLoadStateHeaderAndFooter(

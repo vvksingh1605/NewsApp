@@ -28,12 +28,10 @@ class NewsDetailFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if(arguments?.containsKey(BUNDLE_ARTICLE)==true){
-            with(arguments?.getSerializable(BUNDLE_ARTICLE)){
-                setDetails(this as Article)
-
-            }
-        }
+     arguments?.let {
+         val selectedArticle=NewsDetailFragmentArgs.fromBundle(it).selectedArticle
+         setDetails(selectedArticle)
+     }
 
     }
 
